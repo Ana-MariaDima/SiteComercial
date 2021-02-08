@@ -1,0 +1,14 @@
+
+<figure class="produse" nume="<%= produs.nume %>" categorie="<%= locals.produs.categorie %>" disp="<%= locals.produs.stoc %>" culoare="<%= locals.produs.culoare %>" marimi="<%= locals.produs.marimi %>" >
+<img src="<%= produs.imagine %>"  alt="<%= produs.nume %>" />
+<figcaption>
+<p><a href="/elem_<%= locals.produs.id %>">   <%= locals.produs.nume %>  </a></p>
+<p class="pret" prc="<%= locals.produs.pret %>">Pret: <%= locals.produs.pret %> lei</p>
+</figcaption>
+</figure>
+<!--data-categorie pt atributele non standard-->
+<!--p><%= locals.produs.descriere %></p>
+<p><%= locals.produs.date %></p>
+<p><%= locals.produs.stoc %></p>
+<p><%= locals.produs.categorie %></p-->
+

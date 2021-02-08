@@ -1,0 +1,44 @@
+th,td{
+     border:1px solid black;
+     padding:5px;
+        }
+td:empty{
+     padding:20px;
+        }
+table{
+     border-collapse:collapse;
+     empty-cells:show;
+        }
+
+table {
+   
+    counter-reset: row-num;
+    
+    
+          }
+table tbody tr {
+    counter-increment: row-num;
+          }
+table tr td:first-child::before {
+    content: counter(row-num) ". ";
+          }
+
+#grid_tabel{
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+table{
+/*
+    margin: 0px 30px 0px 30px;
+    padding: 0px 30px 0px 30px;
+    */
+    margin: 25%;
+
+
+}
+

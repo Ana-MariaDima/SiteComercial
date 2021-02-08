@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<%- include("../fragmente/head") %>
+
+</head>
+
+<body class="light">
+
+
+    <%- include("../fragmente/header") %>
+	
+
+	 
+
+<main>
+	<h2 style="padding-left: 0%; border: none; margin-left: 0%;">Inregistrare utilizator</h2>
+    <div class="afisaj">
+        
+		</p>
+		<% if (locals.err !="") { %>
+		<form method="post" class="date"  action="/inreg" id="inregistrare" enctype="multipart/form-data" onsubmit="return verificare_form()" >
+			<p>
+			<label>
+				Username: <input type="text" name="username"  value="" required >
+			</label>
+			</p>
+			<p>
+			<label>
+				Nume: <input type="text" name="nume" id="nume" value="" required>
+			</label>
+			</p>
+			<p>
+			<label>
+				Prenume: <input type="text" name="prenume" id="prenume" value="" required>
+			</label>
+			</p>
+			<p>
+			<label>
+				Parola: <input type="password" name="parola" id="pass"  value=""required>
+			</label>
+			</p>
+			<p>
+			<label>
+				Reintroduceti parola: <input type="password" name="rparola" id="rpass"  value=""required>
+			</label>
+			</p>
+			<p>
+			<label>
+				Email: <input type="text" name="email"  value=""  size="50"required>
+			</label>
+			</p>
+			<p>
+			<label>
+				Ocupatie: <select name="ocupatie">
+					<option value="elev">elev</option>
+					<option value="student">student</option>
+					<option value="angajat">angajat</option>
+					<option value="angajat">somer</option>
+					<option value="angajat">nu vreau sa spun</option>
+				</select>
+			</label>
+			<label>
+				Poza: <input type="file" name="poza">
+			</label>
+			</p>
+			<p>		
+				<input type="submit" value="Trimite">
+				<input type="reset" value="Reseteaza">
+			</p>
+		</form>
+	<% } %>
+	<%- (locals.raspuns?locals.raspuns:"")+"<br/>"+(locals.err?locals.err:"")%>
+
+    </div>
+</main>
+<style>
+	.afisaj{
+		text-align: center;
+	}
+	label{
+		text-align: left;
+	}
+</style>
+<footer>
+    <%- include("../fragmente/footer") %>
+</footer>
+
+</body>
+</html>
+
+<script>
+	/* apel : onblur="verificare_gol(this)"
+function verificare_gol(x){
+	
+	if(x.value=="")
+	alert("Nu lasati campul necompletat")
+	  
+}*/
+
+function verificare_form(){
+	
+	
+
+	var x=document.getElementById("pass");
+	var y=document.getElementById("rpass");
+	var rez=(x.value==y.value)
+	if(rez==false){
+		alert("Parolele introduse nu coincid. Reintroduceti parola")
+	}
+
+	var nume = document.getElementById("nume").value
+	var prenume = document.getElementById("prenume").value
+	var rez_nume=nume.match(new RegExp("^[a-zA-Z\-\s]*$"))
+	rez_prenume=prenume.match(new RegExp("^[a-zA-Z\-\s]*$" ))
+	if(rez_nume==null||rez_prenume==null){
+	alert("Numele si prenumele trebuie sa contina doar litere, spatii sau -")
+		rez=false;
+	}
+
+	return rez 
+}
+</script>

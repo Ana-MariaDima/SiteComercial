@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ro">
+  <head>
+
+  
+	<%- include("../fragmente/head.ejs") %>
+
+</head>
+ 
+ 
+<body class="light">
+
+	<%- include("../fragmente/header.ejs") %>
+<main>
+
+<br>
+<article>
+	<h2><%= locals.produs_unic.nume  %></h2>
+	<div style="grid-template-columns: repeat(2,1fr); display: grid;">
+		<table>
+			<tbody>
+				<tr>
+					<td>
+						Pret
+					</td>
+					<td>
+						<span class="pret"><%= locals.produs_unic.pret  %></span> lei
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Culoare predominanta
+					</td>
+					<td>
+						<%= locals.produs_unic.culoare  %>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Marimi disponibile
+					</td>
+					<td>
+						<%= locals.produs_unic.marimi  %>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Data aparitie
+					</td>
+					<td>
+						<time datetime="<%=locals.produs_unic.date %>"><%=locals.produs_unic.date.toISOString().substring(0, 10) %>
+						</time>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Disponibilitate
+					</td>
+					<td>
+						<%if (locals.produs_unic.stoc ==1){  %>
+							<p>In stoc</p>
+						<% }  else { %>
+
+							<p>Nu este in stoc</p>
+						<% } %>
+					</td>
+				</tr>
+
+
+			</tbody>
+		</table>
+		<p><img src="<%=locals.produs_unic.imagine %>" alt="<%=locals.produs_unic.nume  %>" width="70%" height="auto" /></p>
+
+		
+
+	</div>
+</article>
+	<br>
+	<ul>
+		<li><span style="padding-left: 2%; font-size: 23px; text-decoration: underline;">
+			<b>Descriere produs:</b> </span>
+			<span style=" font-size: 20px; ">
+			 <%= locals.produs_unic.descriere  %>
+			</span></li>
+		<li><span style="padding-left: 2%; font-size: 23px; text-decoration: underline;">
+			<b>Categorie:</b></span>
+			<span style=" font-size: 20px;:" >
+			 <%= locals.produs_unic.categorie  %>
+			</span>
+		</p></li>
+	
+</ul>
+	
+<!--%- include("../fragmente/produs.ejs", {produs:locals.produs_unic}) %-->
+		
+</main>
+
+<%- include("../fragmente/footer.ejs") %>
+
+
+</body>
+<style>
+
+	.produse{
+		transition: none;
+	}
+	.produse:hover{
+		transform: none;
+		background-color: transparent;
+	}
+	table tr td:first-child::before {
+    content:none;
+          }
+		  table{
+
+			  width: 70%;
+			  height: 100%;
+			  table-layout: fixed;
+			  font-size: 25px;
+			  text-align: center;
+		  }
+</style>
+</html>
+
+

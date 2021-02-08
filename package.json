@@ -1,0 +1,29 @@
+{
+  "name": "customwise",
+  "version": "1.0.0",
+  "description": "site cu articole personalizate handmade",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "pictura",
+    "art",
+    "pictat",
+    "manual",
+    "handmade",
+    "custom"
+  ],
+  "author": "Ana Dima",
+  "license": "ISC",
+  "dependencies": {
+    "crypto": "^1.0.1",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "formidable": "^1.2.2",
+    "md5": "^2.3.0",
+    "mysql": "^2.18.1",
+    "nodemailer": "^6.4.17"
+  }
+}

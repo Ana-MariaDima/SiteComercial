@@ -1,0 +1,262 @@
+ /* --------- headinguri -------------*/
+h1{
+  font-size:2.2rem;
+  letter-spacing:0.2em;
+  background-image:linear-gradient(	#c2c2d6 10%, #e4f6ff);
+  font-family:'Sen', sans-serif, cursive;
+  position:relative;
+  /*border-top-left-radius:5rem;*/
+  height:5rem;
+  padding-left:3rem;
+  font-weight:900;
+  text-align: center;
+
+  text-shadow: 0px 0px 0.07rem black, 0px 0px 0.07rem black,0px 0px 0.3rem white,0px 0px 0.3rem white,0px 0px 0.3rem white,0px 0px 0.3rem white,0px 0px 0.3rem white;
+  /* pentru a obtine o 
+  trecere animata de 
+  la un font-size la altul 
+  cand redimensionez pagina*/
+  transition:font-size 1s linear;
+  
+  box-shadow:black 0px -5px 10px, grey 0px -10px 10px;
+
+}
+
+
+html{
+  font-size:10px;
+}
+
+.home{
+  display: none;
+}
+nav{
+  z-index:100;
+    --backgroundMeniu:#c2c2d6;
+}
+
+#hamburger{
+  display:block;
+}
+ul.menu{
+  display:none;
+  
+    
+}
+#ch-menu:checked~ul.menu{
+  display:block;
+  
+
+}
+ul.menu>li{
+  width:100%;
+  background:var(--backgroundMeniu);
+}
+
+/*scalare pe orizontala meniu*/
+ul.menu a:hover ,ul.menu label:hover {
+    background:rgba(255,255,255,0.5);}
+
+ul.menu a ,ul.menu label{
+     animation-name: submeniuMic;
+  animation-duration:0.3s;
+ animation-timing-function:linear;
+ animation-iteration-count:1;
+ animation-fill-mode:forwords;
+
+    }
+    @keyframes submeniuMic{
+
+0%{
+
+  transform: scaleX(0);}
+100%{
+
+  transform: scaleX(1);
+}
+
+}
+
+
+.grid {
+       
+        margin:0 auto;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+             /*grid-gap: .5rem;
+            padding: .5rem;
+            grid-auto-rows: minmax(100px, auto);
+            background:white;
+           box-shadow:0px 10px 50px -20px black;*/
+            
+
+            
+}
+main{
+  padding-left:0.5em;
+  padding-right:0.5em;
+  
+  display:block;
+                      
+}
+
+
+
+/*tabel*/
+
+
+table, th, td{
+     border:3px solid black;
+     padding:5px;
+width: max-content;
+
+
+        }
+
+table{
+     border-collapse:collapse;
+     empty-cells:show;
+    margin: 0px 30px 0px 30px;
+
+        }
+
+table {
+   
+/*
+    margin: 0px 30px 0px 30px;
+    padding: 0px 30px 0px 30px;
+    */
+
+          }
+          /*
+table tbody tr {
+    counter-increment: row-num;
+          }
+table tr td:first-child::before {
+    content: counter(row-num) ". ";
+          }
+*/
+#grid_tabel{
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    margin-left: 2%;
+    margin-right: 2%;
+  overflow:visible;
+  width:94%;
+  overflow-x: auto;
+}
+/*
+
+table tbody tr:nth-child(odd){
+
+  background-color: #F5FFFA;
+}
+
+
+table tbody tr:nth-child(even){
+
+  background-color: #FFFAF0;
+}
+
+
+
+table  tr:hover{
+
+ background-color:#FA8072;
+
+}
+table  thead tr th[colspan]:not([colspan="1"]):hover {
+ background-color: white;
+}
+
+ table tbody tr:nth-child(odd):hover{
+
+ background-color:#98FB98;
+
+}
+ table tbody tr:nth-child(even):hover{
+
+  background-color: #FFE4B5;
+}
+
+*/
+/*denumim numele din grid*/
+#logo{
+
+  grid-area: gr-logo;
+
+}
+
+#mesaj_index{
+
+  grid-area: gr-mesaj-index;
+  font-size: 20px;
+}
+#intrebare{
+
+  grid-area:gr-intrebare;
+
+  
+}
+
+#ic_livrare{
+
+  grid-area:gr-livrare;
+  
+}
+#ic_materiale{
+
+  grid-area:gr-materiale;
+  
+}
+#ic_handmade{
+
+  grid-area:gr-handmade;
+  
+}
+#ic_curatare{
+
+  grid-area:gr-curatare;
+  
+}
+#contact{
+
+  grid-area:gr-contact;
+  
+}
+
+#main2{
+
+  display:grid;
+  text-align: center;
+  grid-template-columns: repeat(1,1fr);
+
+ 
+  grid-template-areas: 
+  "gr-logo      "
+  "gr-livrare   "
+  "  gr-materiale "
+  "gr-handmade  " 
+  "    gr-curatare"
+
+
+  ;             
+}
+/*butoon sus*/
+#butonhome {
+  background-color:	 #8000ff;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  right:0px;
+  bottom:0px;
+  position: fixed;
+}

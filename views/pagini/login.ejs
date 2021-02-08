@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	
+    <%- include("../fragmente/head") %>
+	
+	
+	
+</head>
+<body class="light">
+
+
+    <%- include("../fragmente/header") %>
+
+	 <main>
+    <div class="afisaj">
+        <h1>Aplicatie didactica</h1>
+		<% if (!locals.utilizator) { %>
+			
+		<p>Va rugam sa va logati: <br/>
+		<form id="login" method="post" action="/login">
+			
+			<label>
+				Username: <input type="text" name="username" value="">
+			</label>
+			<label>
+				Parola: <input type="password" name="parola" value="">
+			</label>
+			
+			<input type="submit" value="Submit">
+		</form>
+		<% } %>
+		<hr class="despartitor"/>
+		<p>Aplicatie exemplu pentru conectarea la baza de date</p> <hr class="despartitor"/>
+
+		<% if (locals.utilizator && locals.utilizator.rol=="admin") { %>
+		
+			<p>Sterge utilizator</p>
+			<form id="sterge" method="post" action="/sterge_utiliz">
+				<label>
+					Id: <input type="text" name="id_utiliz" value="">
+				</label>
+				
+				<input type="submit" value="Submit">
+			</form>
+		<% } %>
+    </div>
+</main>
+
+    <%- include("../fragmente/footer") %>
+
+</body>
+</html>

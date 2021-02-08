@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+
+
+	<%- include("../fragmente/head.ejs") %>
+
+</head>
+
+<body class="light">
+
+	<%- include("../fragmente/header.ejs") %>
+
+
+		<main >
+			<h2>Produse</h2>
+
+			<style>
+				label {
+					display: block;
+				}
+
+				label,
+				textarea,
+				input,
+				select {
+					vertical-align: middle;
+					   
+				}
+				.filtre{
+					padding-left: 5%;
+				}
+			</style>
+			<div class="filtre">
+				<label> Denumire produs:<textarea id="i_textarea" value=""></textarea>
+				</label>
+
+				<br>
+				<label for="i_range">Pret:
+					<input id="i_range" type="range" name="rangeInput" min="200" max="1500" step="50" value="26"
+						onchange="updateTextInput(this.value)">
+					<input type="text" id="textInput" value="200">
+				</label>
+				<br>
+
+				<label><span style="text-decoration: underline;"> Categorii de produse </span>
+					<ul>
+						<li><label>Toate
+								<input id="i_check1" name="gr_chck" class="default" checked value="toate"
+									type="checkbox" />
+							</label></li>
+
+						<li><label> Adidasi
+								<input id="i_check2" name="gr_chck" value="adidasi" type="checkbox" />
+							</label></li>
+						<li><label> Geci
+								<input id="i_check3" name="gr_chck" value="geaca" type="checkbox" />
+							</label>
+						</li>
+					</ul>
+				</label>
+				<br>
+
+				<div> Disponibilitate:
+					<!-- trebuie sa aiba acelasi name ca sa formeze un grup -->
+					<label>In stoc
+						<input id="i_rad1" name="gr_rad" value="1" type="radio" />
+					</label>
+					<label>Toate
+						<input id="i_rad2" class="default" name="gr_rad" value="2" checked type="radio" />
+					</label>
+
+				</div>
+				<br>
+
+				<label>Marime:
+					<select id="i_sel_simplu">
+						<option value="nimic" class="default" selected>Please Select</option>
+						<option value="36">36</option>
+						<option value="37">37</option>
+						<option value="38">38</option>
+						<option value="39">39</option>
+						<option value="40">40</option>
+						<option value="41">41</option>
+						<option value="42">42</option>
+						<option value="43">43</option>
+						<option value="44">44</option>
+						<option value="45">45</option>
+						<option value="46">46</option>
+						<option value="S">S</option>
+						<option value="M">M</option>
+						<option value="L">L</option>
+						<option value="XL">XL</option>
+						<option value="XXL">XXL</option>
+					</select>
+				</label>
+				<br>
+				<label>Culori:
+					<select id="i_sel_multiplu" multiple size="5">
+						<option value="rosu">Rosu</option>
+						<option value="albastru">Albastru</option>
+						<option value="portocaliu">Portocaliu</option>
+						<option value="multicolor">Multicolor</option>
+						<option value="verde">Verde</option>
+						<option value="galben">Galben</option>
+						<option value="roz">Roz</option>
+						<option value="nimic" class="default" selected>Please Select</option>
+
+					</select>
+				</label>
+
+				<button id="preia">Aplica filtre</button>
+				<button id="reset">Reseteaza filtre</button>
+				<button id="sort1kasc" onclick="sort1k(true)">Sorteaza Asc Pret</button>
+				<button id="sort1kdsc" onclick="sort1k(false)">Sorteaza Dsc Pret</button>
+				<button id="sort2k" onclick="sort2k()">Sorteaza Nume si Pret</button>
+				<button id="calcPret" onclick="calcSum()">Calculeaza Pret</button>
+
+
+			</div>
+			<!--p>a: <%= locals.param_a %></p>
+	<p>a: <%= locals.param_a+1000 %></p>
+	
+	<p>b: <%= parseInt(locals.param_b)+11 %></p-->
+			<section class="toate_produse">
+				<div class="grid">
+					<% for(let i=0; i<locals.produse.length; i++) { %>
+
+
+						<%- include("../fragmente/produs.ejs", {produs:locals.produse[i]}) %>
+
+					<% } %>
+				</div>
+			</section>
+		</main>
+		<style>
+			.hidden {
+				display: none;
+			}
+		</style>
+		<script>
+			function updateTextInput(val) {
+				document.getElementById('textInput').value = val;
+			} //functie pentru afisarea valorii input range pret
+
+			document.getElementById("reset").onclick = function () {
+				var inputuri = document.querySelectorAll(".filtre input")
+				var textareas = document.querySelectorAll(".filtre textarea")
+				var selecturi = document.querySelectorAll(".filtre select")
+
+				for(var inp of inputuri){
+					
+					if(inp.type == "checkbox" || inp.type == "radio"){
+						inp.checked = (inp.classList.contains("default"))
+					}else{
+						inp.value = 0
+					}
+
+				}
+
+				for(var txta of textareas){
+					txta.value = "";
+				}
+
+				for(var select of selecturi){
+					select.value = "nimic"
+				}
+
+
+				updateTextInput(document.getElementById("i_range").value)
+				
+			}
+			//console.log("setting ev listener")
+			document.getElementById("preia").onclick = function () {
+				var denumire=document.getElementById("i_textarea").value.toLowerCase();
+				var pretMin = parseInt(document.getElementById("i_range").value);
+
+				var categorii = document.getElementsByName("gr_chck");
+				categorii = Array.from(categorii).filter(function(element_array){ return element_array.checked  });
+				categorii = categorii.map(function(element,index){ return element.value });
+
+				var disponibil=document.getElementsByName("gr_rad");
+				disponibil = Array.from(disponibil).filter(function(element_array){ return element_array.checked  })[0];
+				disponibil = disponibil.value;
+
+				var marime=document.getElementById("i_sel_simplu").value;
+				var culori=document.getElementById("i_sel_multiplu").options;
+				culori = Array.from(culori).filter(function(optiune){ return optiune.selected }).map(function(element,index){ return element.value})
+
+				var produse = document.querySelectorAll(".toate_produse figure");
+
+
+				for (var prod of produse) {
+					//prod.style.display="block";
+					//var aux=prod.getElementsByClassName("cu-ambalaj")
+					//console.log(aux)
+					var pret_prod = parseInt(prod.getElementsByClassName("pret")[0].getAttribute("prc"))
+					var nume_prod = prod.getAttribute("nume").toLowerCase()
+					var categorie_prod = prod.getAttribute("categorie").toLowerCase()
+					var disp_prod = prod.getAttribute("disp").toLowerCase()
+					var culoare_prod = prod.getAttribute("culoare").toLowerCase()
+					var marimi_prod = prod.getAttribute("marimi").split(",")
+
+					//var dropdown_marime = ...
+
+					// console.log(pret, pretMin)
+					// var conditie2 = (pret <= pretMin)
+					// console.log(conditie2)
+					// var conditie_totala = conditie2
+
+					var ok = true
+
+					//pret
+					if(pret_prod < pretMin){
+						ok = false;
+					}
+
+					//nume
+					if(denumire.length > 0){
+						if(nume_prod.indexOf(denumire) == -1){
+							ok = false;
+						}
+					}
+
+					//categorie
+					if(categorii.length > 0 && categorii[0] != "toate"){
+
+						if(!categorii.includes(categorie_prod)){
+							ok = false
+						}
+					}
+
+					//stoc
+					if(disponibil != "2"){
+						if(disp_prod != disponibil){
+							ok = false
+						}
+					}
+					//culoare
+					if(culori.length > 0 && culori[0] != "nimic"){ //&& culori.length == 1
+						if(!culori.includes(culoare_prod)){
+							ok = false
+						}
+					}
+
+					if(marime != "nimic"){
+						if(!marimi_prod.includes(marime)){
+							ok = false
+						}
+					}
+
+
+					/* if(dropdown_marime != "nimic"){ //daca e activat filtrul de marime (daca a selectat altceva in afara de "nimic")
+						 
+						if(prod.marime != dropdown_marime){
+			
+							ok = false sau continue (trebuie sa pui prod.style.display="none"; inainte de continue);
+			
+						}
+					}
+			
+					*/
+					//if(!ok){...} daca alegi sa folosesti structura cu ok
+
+
+					if (!ok) {//pe cele pe care le ascund
+						prod.classList.add("hidden");
+					} else {
+						prod.classList.remove("hidden");
+					}
+				}
+			}
+
+			function sort1k(ascendent) { //true ascendent false desc
+				var container = document.querySelectorAll(".toate_produse>.grid")[0];
+				//var divuri=container.getElementsByTagName("div");
+				var figures = container.children;
+
+				var v_divuri = Array.from(figures);
+				console.log(v_divuri)
+				v_divuri.sort(function (a, b) { //a si b sunt divuri
+					var pret_a = parseInt(a.getElementsByClassName("pret")[0].getAttribute("prc"))
+					var pret_b = parseInt(b.getElementsByClassName("pret")[0].getAttribute("prc"))
+
+					if (ascendent)
+						return pret_a - pret_b;
+					else
+						return pret_b - pret_a;
+				})
+				console.log(v_divuri)
+				for (let i = 0; i < v_divuri.length; i++) {
+					/*v_divuri[i].style.order=i;*/ //varianta 1, sorare cu order (doar pentru flexbox)
+
+					//varianta 2 
+					// 3 1 2 |  ---> 3 2 | 1 --> 3 | 1 2 ---> | 1 2 3
+					container.appendChild(v_divuri[i]);
+				}
+			}
+
+			function calcSum() {
+				var elms = document.querySelectorAll('.toate_produse figure:not(.hidden)')
+				var suma = 0
+				for (var produs of elms) {
+					var pret = parseInt(produs.getElementsByClassName("pret")[0].getAttribute("prc"))
+
+					suma += pret;
+				}
+
+				alert("Suma preturilor produselor filtrate este: " + suma)
+			}
+
+			function sort2k() {
+				var container = document.querySelectorAll(".toate_produse>.grid")[0];
+				//var divuri=container.getElementsByTagName("div");
+				var figures = container.children;
+
+				var v_divuri = Array.from(figures);
+				console.log(v_divuri)
+				v_divuri.sort(function (a, b) { //a si b sunt divuri
+					var pret_a = parseInt(a.getElementsByClassName("pret")[0].getAttribute("prc"))
+					var pret_b = parseInt(b.getElementsByClassName("pret")[0].getAttribute("prc"))
+
+					var nume_a = a.getAttribute("nume")
+					var nume_b = b.getAttribute("nume")
+
+					if (nume_a == nume_b)
+						return nume_a.localeCompare(nume_b);
+					else return pret_a - pret_b;
+				})
+				console.log(v_divuri)
+				for (let i = 0; i < v_divuri.length; i++) {
+					/*v_divuri[i].style.order=i;*/ //varianta 1, sorare cu order (doar pentru flexbox)
+
+					//varianta 2 
+					// 3 1 2 |  ---> 3 2 | 1 --> 3 | 1 2 ---> | 1 2 3
+					container.appendChild(v_divuri[i]);
+				}
+			}
+
+
+
+
+
+
+		</script>
+
+
+		<%- include("../fragmente/footer.ejs") %>
+</body>
+
+</html>

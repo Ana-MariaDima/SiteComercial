@@ -1,0 +1,12 @@
+var express=require('express')
+var app=express();// aici am creat serverul
+
+app.set('view engine', 'ejs');
+
+app.get('/', function(req,res){
+res.render('pagini/index');
+});
+
+app.listen(8080);
+
+console.log("a pornit serverul');

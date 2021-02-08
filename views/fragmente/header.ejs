@@ -1,0 +1,122 @@
+
+<header>
+    
+  <% if (locals.utilizator) { %>
+    <h1 style="font-size: 15px;">
+    <button title="logout" style="display: inline-block;" class="fas fa-door-open">
+      <a href="logout">logout
+      </a>
+  
+    </button>
+    <p class="salut">Salut, <%= locals.utilizator.username %>  </p>
+    <p class="salut"><img src="<%= locals.utilizator.cale_imagine%>"/> </p>
+</h1> 
+    
+  <% } else{%>
+    <span >
+    <p style="      padding-left: 5%;    ">Va rugam sa va logati: <br/></p>
+      <form style="      padding-left: 5%;    " id="login" method="post" action="/login">
+        
+        <label>
+          Username: <input type="text" name="username" value="Costica">
+        </label>
+        <label>
+          Parola: <input type="password" name="parola" value="">
+        </label>
+        
+        <input type="submit" value="Submit">
+      </form>
+    </span>
+      <% } %>
+    
+
+
+
+  <nav >
+			<label id="hamburger" for="ch-menu">
+        <img src="/imagini/Hamburger_icon_negru.png" alt="menu">
+      </label>
+      <!--	<label id="acasa" for="ch-menu">
+        <img src="resurse/imagini/home_ico.png" alt="acasa">
+      </label>-->
+      <input id="ch-menu" type="checkbox">
+      
+			<ul class="menu">
+     
+   <li><a id="acasa" href="./index.ejs"><i class="fa fa-fw fa-home"></i><span class="home">Acasa</span></a></li>
+				
+				<li><a href="./despre.ejs">Despre</a></li>
+        <li><a href="./faq.ejs">FAQ</a></li>
+         <li><a scrollto="#contact">Contact</a></li>
+				<li>
+          <label for="tabel">
+             Marimi
+          </label>
+          <!--Am folosit un checkbox pentru inchiderea/deschiderea submeniului-->
+          <input class="ch-submenu" type="checkbox" id="tabel">
+          <ul class="submenu">
+            <li><a href="./tabel_marimi.ejs#adidasi">Adidasi</a></li>
+             <li><a scrollto="#geci">Geci</a></li>
+          </ul>
+
+        </li>
+       
+        <li>
+          <label for="produse">
+            Produse
+          </label>
+         
+          <input class="ch-submenu" type="checkbox" id="produse">
+          <ul class="submenu">
+            <li><a href="./incaltaminte.ejs">Incaltaminte</a></li>
+            <li><a href="./geci.ejs">Geci</a></li>
+            <li><a href="./accesorii.ejs">Accesorii</a></li>
+            <li><a href="./produse">Toate </a></li>
+         
+          </ul>
+        </li>
+        <li><a href="./inregistrare_user.ejs">Inregistrare</a></li>
+        <% if (locals.utilizator && locals.utilizator.rol=="admin") { %>
+          <li>
+            <a href="useri">
+            Utilizatorii
+            </a>
+          </li>
+        <% } %>
+				
+			</ul>
+		</nav>
+    <script>
+      /*scrol animat*/
+      function smoothScrollTo(top_position){
+        var position = window.scrollY;
+        var down = position-top_position < 0;
+       var scroll_interval =  setInterval(function(){ 
+                                                if(position >= top_position && down){
+                                                  clearInterval(scroll_interval);
+                                                }
+
+                                                if(position <= top_position && !down){
+                                                  clearInterval(scroll_interval);
+                                                }
+
+                                                position += (position<top_position?2:-2);
+                                                window.scroll({ top: position, behavior: 'smooth' })
+                                          },3)
+      }
+      Array.from(document.querySelectorAll("nav a")).forEach(function(element) {
+        element.addEventListener("click", function(ev) {
+          var id = this.getAttribute("scrollto").replace("#", "")
+          //console.log(id);
+          var top_pos = document.getElementById(id).offsetTop;
+          smoothScrollTo(top_pos);
+        })
+      })
+      </script>
+
+
+   
+     
+
+    
+   </header>   

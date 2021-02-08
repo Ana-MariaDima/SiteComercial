@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ro">
+  <head>
+
+  
+  <%- include("../fragmente/head.ejs") %>
+
+</head>
+  
+ 
+<body class="light">
+
+	<%- include("../fragmente/header.ejs") %>
+    
+
+  
+
+  <main>
+    <div id="main2">
+   
+<picture style="padding: 0%; margin: 0%;" id="logo">
+     <source media="(min-width:1300px)" srcset="/imagini/logo.png">
+     <source media="(max-width:1450px) and (min-width:600px)" srcset="/imagini/logo_mediu.png">
+     <source media="(max-width:599px) and (min-width:270px)" srcset="/imagini/logo_mic.png">
+     <img class="alta_redimensionare" src="/imagini/logo_mic.png" alt="Imagine cu logo " title="Logo" > 
+   </picture>
+  
+
+
+   
+   <figure class="icons" id="ic_livrare" >
+   <img   src="/imagini/layout/pachet.png" alt="cutie"  title="Cutie de livrare" >
+   <figcaption> Livrare rapida</figcaption>
+   
+ </figure>
+ <figure class="icons" id="ic_materiale" >
+   <img   src="/imagini/layout/culori.png" alt="culori"  title="Materiale" >
+   <figcaption> Materiale premium</figcaption>
+   
+ </figure>
+ <figure class="icons" id="ic_handmade" >
+   <img   src="/imagini/layout/handmade.png" alt="handmade"  title="Handmade" >
+   <figcaption>100% Handmade</figcaption>
+
+
+   
+ </figure>
+
+<figure class="icons" id="ic_curatare" >
+   <img   src="/imagini/layout/adidasi.png" alt="curatare"  title="Curatare" >
+   <figcaption>Lucrari rezistente</figcaption>
+ </figure>
+
+
+
+     <div id="animatie">Proiect scolar</div>
+    </div>
+   </main>
+
+    
+	<%- include("../fragmente/footer.ejs") %>
+
+
+</body>
+
+
+</html>

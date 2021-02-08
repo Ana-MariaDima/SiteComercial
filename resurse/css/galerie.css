@@ -1,0 +1,193 @@
+
+   *{
+  padding:0;
+  margin:0;
+  text-indent:0;
+}
+h2{
+  text-align: center;
+  margin-bottom: 50px;
+}
+html{
+  font-size:18px;
+  font-family:'Sen', sans-serif;
+}
+
+body{
+  padding-top:3rem;
+  background:rgb(250,250,255);
+  /*consideram ca niciun ecran de dispozitiv nu e mai mic de 200px
+  iar pentru cele care sunt: well, deal with it! */
+  min-width:200px;
+
+    --backgroundMeniu:#c2c2d6;
+    --scrisMeniu:black;
+}
+/*meniu*/
+   nav{
+   
+		width:100%;
+		position:fixed;
+    background:var(--backgroundMeniu);
+    height:3rem;
+    top:0px;
+    left:0px;
+    font-family:Arial, Helvetica, sans-serif;
+    z-index:20;
+	}
+  
+  	ul.menu>li, ul.menu>li>ul.submenu>li{
+		display:block;		
+		font-size:1.2rem;
+		font-weight:bold;
+		line-height:3rem;
+		text-align:center;		
+		list-style-type:none;    
+    background:var(--backgroundMeniu);
+    top:30px;
+	}
+
+
+
+  ul.menu>li{
+	 float:left;
+	 width:7rem;
+	}
+  
+
+  ul.menu>li>a,ul.menu>li>label,ul.submenu>li>a{
+		display:block;
+		height:	100%;
+		text-decoration:none;
+		color:var(--scrisMeniu);
+    transition:all 0.5s linear;
+	}
+
+
+  #hamburger{
+    display:none;
+    height:3rem;
+  }
+  #hamburger img{
+    height:100%;
+    width:auto;
+  }
+
+  #ch-menu, .ch-submenu{
+    display:none;
+  }
+  ul.submenu{
+    display:none;
+  }
+
+/* aparitie submeniu */ 
+
+  .ch-submenu:checked~ul.submenu{
+    display:block;  
+
+  }
+   
+   
+ 
+/*
+.alta_redimensionare{
+  
+    width:auto;
+    }*/
+    
+/*butoon sus*/
+#butonhome {
+  background-color:	 #8000ff;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  right:0px;
+  bottom:0px;
+  position: fixed;
+}
+
+
+/*light/ dark theme*/
+    body.light{
+      /* obligatoriu sa inceapa cu -- */
+      --culoare-text: black;      --culoare-back: #F8F8FF;/* #ABC --> #AABBCC */
+      --culoare-background-tabel-par:#FFFAF0; 
+      --culoare-background-tabel-impar:#F5FFFA;
+      --culoare-atentionare: magenta;
+      background:var(--culoare-back);
+       --culoare-link:magenta;
+       --culoare-hover-par:#98FB98;
+       --culoare-hover-impar:#FFE4B5;
+       
+      
+    }
+
+
+    body.dark{
+      --culoare-text: #f9e6ff;
+      --culoare-back: #6c7693;/* #ABC --> #AABBCC */
+      --culoare-atentionare: pink;
+      background:var(--culoare-back);
+      --culoare-link:#80e5ff;
+      --culoare-background-tabel-par: transparent;
+      --culoare-background-tabel-impar:transparent;
+      --culoare-hover-par:#209420;
+      --culoare-hover-impar:#0275c2;
+
+    }
+    table tbody tr:nth-child(odd){
+
+      background-color:var(--culoare-background-tabel-impar);
+    }
+    
+    
+    table tbody tr:nth-child(even){
+    
+      background-color:var(--culoare-background-tabel-par);
+    }
+    table tbody tr:nth-child(odd):hover{
+
+      background-color:var(--culoare-hover-impar);
+     
+     }
+      table tbody tr:nth-child(even):hover{
+     
+       background-color:var(--culoare-hover-par);
+     }
+    h1, p, div, h2, ul, li, footer, figcaption, section, label{
+      color: var(--culoare-text);
+      
+    }
+    a{
+      color: var(--culoare-link);
+    }
+    footer {
+      padding-left: 5%;
+    }
+
+    footer{
+      padding-top: 5%;
+    }
+
+  #butontema {
+  background-color:	var(--backgroundMeniu);
+  border: none;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  right:0px;
+  top:0px;
+  z-index: 100;
+  position: fixed;
+}
+

@@ -1,0 +1,115 @@
+.tiles {
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%) translateX(-50%);
+          transform: translateY(-50%) translateX(-50%);
+  width: 330px;
+}
+
+.tile {
+  -webkit-animation: 1s ease 0s pulse infinite;
+          animation: 1s ease 0s pulse infinite;
+  background: #cfcfdf;
+  border-radius: 4px;
+  float: left;
+  height: 75px;
+  margin: 5px;
+  width: 100px;
+}
+
+.tile:nth-child(1) {
+  -webkit-animation-delay: 0.05556s;
+          animation-delay: 0.05556s;
+}
+
+.tile:nth-child(2) {
+  -webkit-animation-delay: 0.11111s;
+          animation-delay: 0.11111s;
+}
+
+.tile:nth-child(3) {
+  -webkit-animation-delay: 0.16667s;
+          animation-delay: 0.16667s;
+}
+
+.tile:nth-child(4) {
+  -webkit-animation-delay: 0.22222s;
+          animation-delay: 0.22222s;
+}
+
+.tile:nth-child(5) {
+  -webkit-animation-delay: 0.27778s;
+          animation-delay: 0.27778s;
+}
+
+.tile:nth-child(6) {
+  -webkit-animation-delay: 0.33333s;
+          animation-delay: 0.33333s;
+}
+
+.tile:nth-child(7) {
+  -webkit-animation-delay: 0.38889s;
+          animation-delay: 0.38889s;
+}
+
+.tile:nth-child(8) {
+  -webkit-animation-delay: 0.44444s;
+          animation-delay: 0.44444s;
+}
+
+.tile:nth-child(9) {
+  -webkit-animation-delay: 0.5s;
+          animation-delay: 0.5s;
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    background: #cfcfdf;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  25% {
+    background: #b0b0cb;
+    -webkit-transform: scale(1.015);
+            transform: scale(1.015);
+  }
+  50% {
+    background: #cfcfdf;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    background: #cfcfdf;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  25% {
+    background: #b0b0cb;
+    -webkit-transform: scale(1.015);
+            transform: scale(1.015);
+  }
+  50% {
+    background: #cfcfdf;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+/*# sourceMappingURL=galerie.css.map */

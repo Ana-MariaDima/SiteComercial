@@ -1,0 +1,31 @@
+@media print 
+      {
+       #animatie{
+         position: absolute;
+          top: 0px;
+          text-align: center;
+          font-size: 3rem;
+
+        }
+      nav{
+        display:none;
+        }
+      video {
+        display:none;
+        }
+      audio{
+        display:none;
+        }
+      
+
+    body{
+   background:#F8F8FF;
+   background-image:none;
+      }
+      .icons{
+        display: none;
+      }
+
+
+
+      }
